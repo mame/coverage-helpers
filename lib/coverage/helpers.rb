@@ -189,17 +189,18 @@ module Coverage
         if runs[:methods]
           ncov[path][:methods] = methods = {}
           runs[:methods].each do |mthd, run|
-            nmthd =
+            klass =
               begin
                 Marshal.dump(mthd[0])
                 mthd[0]
               rescue
                 mthd[0].to_s
               end
-            methods[[nmthd] + mthd.drop(1)] = run
+            methods[[klass] + mthd.drop(1)] = run
           end
         end
       end
+      ncov
     end
 
     # Save the coverage result to a file.

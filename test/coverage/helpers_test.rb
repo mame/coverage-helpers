@@ -470,6 +470,24 @@ end_of_record
     assert_equal exp, Coverage::Helpers.to_lcov_info(cov)
   end
 
+  def test_sanitize
+    cov = {
+      "foo.rb" => { :methods => {
+        [Object                , :foo, 0, 1,0, 2,3] => 2,
+        [Object.singleton_class, :bar, 0, 4,0, 5,3] => 1,
+      } },
+    }
+    exp = {
+      "foo.rb" => { :methods => {
+        [Object                     , :foo, 0, 1,0, 2,3] => 2,
+        [Object.singleton_class.to_s, :bar, 0, 4,0, 5,3] => 1,
+      } },
+    }
+
+    assert_equal exp, Coverage::Helpers.sanitize(cov)
+    assert_equal exp, Marshal.load(Marshal.dump(Coverage::Helpers.sanitize(cov)))
+  end
+
   def test_to_lcov_info_options
     cov = {
       "foo.rb" => { :lines => [0] },
