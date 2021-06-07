@@ -8,7 +8,7 @@ Currently, the following methods are available:
 
 * `Coverage::Helpers.merge(*covs)`: Sum up all coverage results.
 * `Coverage::Helpers.diff(cov1, cov2)`: Extract the coverage results that is covered by `cov1` but not covered by `cov2`.
-* `Coverage::Helpers.sanitize(cov)`: Make the covearge result able to `Marshal#dump`.  (See the Notes section.)
+* `Coverage::Helpers.sanitize(cov)`: Make the coverage result able to `Marshal#dump`.  (See the Notes section.)
 * `Coverage::Helpers.save(filename, cov)`: Save the coverage result to a file.
 * `Coverage::Helpers.load(filename)`:  Load the coverage result from a file.
 * `Coverage::Helpers.to_lcov_info(cov)`: Translate the result into LCOV info format.
@@ -64,7 +64,7 @@ See `example/measure.rb` in detail.
 
 ## Notes
 
-There are two formats of `Coverage.result`.  One is an old format, which Ruby 2.4 or before returns.  It can contain only line coverage.  The other is a new format, which Ruby 2.5 or later generates.  It can contain line, branch, and method covearge.  All methods of this gem support both format.
+There are two formats of `Coverage.result`.  One is an old format, which Ruby 2.4 or before returns.  It can contain only line coverage.  The other is a new format, which Ruby 2.5 or later generates.  It can contain line, branch, and method coverage.  All methods of this gem support both format.
 
 Method coverage data contains a class defined a measured method.  The class may be a singleton class, which `Marshal.dump` cannot handle.  This is why this gem provides `sanitize`.  The method replaces all singleton classes with its string representation by using `to_s`.
 
