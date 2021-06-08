@@ -173,7 +173,7 @@ module Coverage
       ncov
     end
 
-    # Make the covearge result able to marshal.
+    # Make the coverage result able to marshal.
     def sanitize(cov)
       ncov = {}
       cov.each do |path, runs|

@@ -10,7 +10,7 @@ base = nil
 o = OptionParser.new
 o.on("-o DAT", "output coverage data (in Marshal format)") {|v| output_marshal = v }
 o.on("-l LCOVINFO", "output coverage data (in LCOV info format)") {|v| output_lcov_info = v }
-o.on("-a DAT", "measure total covearge with this coverage") {|v| add = v }
+o.on("-a DAT", "measure total coverage with this coverage") {|v| add = v }
 o.on("-b DAT", "measure diff from this coverage") {|v| base = v }
 o.parse!
 
